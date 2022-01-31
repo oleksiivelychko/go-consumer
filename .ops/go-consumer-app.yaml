@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-consumer-app
+  namespace: go-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: go-consumer-app
+  template:
+    metadata:
+      labels:
+        run: go-consumer-app
+    spec:
+      containers:
+      - name: go-consumer
+        image: alexvelychko/goqueueservice
+        resources:
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-consumer-app
+  namespace: go-ns
+  labels:
+    run: go-consumer-app
+spec:
+  type: ClusterIP
+  selector:
+    run: go-consumer-app
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8082
