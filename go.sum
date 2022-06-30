@@ -1,4 +1,6 @@
 github.com/oleksiivelychko/go-queue-service v0.0.0-20220131064532-3183ab6ddd78 h1:RVrwnK1XYe7FQl17gwErv77XqWuy9F0uqpIta1YpBu8=
 github.com/oleksiivelychko/go-queue-service v0.0.0-20220131064532-3183ab6ddd78/go.mod h1:+V/0ncugSx89JY/YiHxIP9TRQ/tCA6QaIXlbJtMHu1U=
+github.com/oleksiivelychko/go-queue-service v0.0.0-20220630045632-0c2b00e52c34 h1:lXOr5VZTwNhmDPruXBWbYfHLEPLaPsQ0CzTamIsNQxU=
+github.com/oleksiivelychko/go-queue-service v0.0.0-20220630045632-0c2b00e52c34/go.mod h1:xXkufZqKl24QXW0yW27jrbTZ9bATi3OwERYqS0bETms=
 github.com/streadway/amqp v1.0.0 h1:kuuDrUJFZL1QYL9hUNuCxNObNzB0bV/ZG5jV3RWAQgo=
 github.com/streadway/amqp v1.0.0/go.mod h1:AZpEONHx3DKn8O/DFsRAY58/XVQiIPMTMB1SddzLXVw=
