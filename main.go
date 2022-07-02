@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	initmq.LoadEnv("rabbitmq")
+	initmq.LoadEnv("go-queue-service.local")
 
 	conn, err := initmq.MQ()
 	initmq.FailOnError(err, "Failed to connect to RabbitMQ")
