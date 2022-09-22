@@ -2,4 +2,12 @@
 
 ### Independent microservice consumes messages from third party channel.
 
-As sample the queue service must be running <a href="https://github.com/oleksiivelychko/go-queue-service">go-queue-service</a> before.
+⚠️ Third-party <a href="https://github.com/oleksiivelychko/go-queue-service">go-queue-service</a> must be running before.
+
+💡 Build and run binary:
+```
+go build -o bin/app -v .
+./bin/app
+```
+
+![Send and receive message from queue](social_preview.png)
