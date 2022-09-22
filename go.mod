@@ -1,7 +1,7 @@
 module github.com/oleksiivelychko/go-consumer
 
-go 1.17
+go 1.18
 
-require github.com/oleksiivelychko/go-queue-service v0.0.0-20220131064532-3183ab6ddd78
+require github.com/oleksiivelychko/go-queue-service v0.0.0-20220630045632-0c2b00e52c34
 
 require github.com/streadway/amqp v1.0.0 // indirect
