@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: go-consumer
-        image: alexvelychko/goqueueservice
+        image: oleksiivelychko/goqueueservice
         resources:
           limits:
             cpu: "1"
