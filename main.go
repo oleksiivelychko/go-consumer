@@ -1,30 +1,23 @@
 package main
 
 import (
-	"github.com/oleksiivelychko/go-queue-service/initmq"
+	"github.com/oleksiivelychko/go-queue-service/mq"
 	"log"
+	"os"
 )
 
 func main() {
-	initmq.LoadEnv("go-queue-service.local")
-
-	conn, err := initmq.MQ()
-	initmq.FailOnError(err, "Failed to connect to RabbitMQ")
+	conn, err := mq.New()
+	mq.FailOnError(err)
 	defer conn.Close()
 
 	ch, err := conn.Channel()
-	initmq.FailOnError(err, "Failed to open a channel")
+	mq.FailOnError(err)
 	defer ch.Close()
 
-	q, err := ch.QueueDeclare(
-		"hello", // name
-		false,   // durable
-		false,   // delete when unused
-		false,   // exclusive
-		false,   // no-wait
-		nil,     // arguments
-	)
-	initmq.FailOnError(err, "Failed to declare a queue")
+	q, err := mq.Queue(ch, os.Getenv("MQ_NAME"))
+
+	mq.FailOnError(err)
 
 	messages, err := ch.Consume(
 		q.Name, // queue
@@ -35,7 +28,8 @@ func main() {
 		false,  // no-wait
 		nil,    // args
 	)
-	initmq.FailOnError(err, "Failed to register a consumer")
+
+	mq.FailOnError(err)
 
 	forever := make(chan bool)
 
