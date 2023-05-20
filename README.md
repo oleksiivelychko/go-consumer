@@ -1,6 +1,6 @@
 # go-consumer
 
-### Independent microservice consumes messages from third-party channel.
+### Microservice consumes messages from third-party channel.
 
 ⚠️ Third-party producer [go-queue-service](https://github.com/oleksiivelychko/go-queue-service) must be running before.
 
