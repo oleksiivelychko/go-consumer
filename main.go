@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/oleksiivelychko/go-queue-service/mq"
+	amqp "github.com/rabbitmq/amqp091-go"
 	"log"
 	"os"
 )
@@ -9,25 +10,21 @@ import (
 func main() {
 	conn, err := mq.New()
 	mq.FailOnError(err)
-	defer conn.Close()
+	defer func(conn *amqp.Connection) {
+		_ = conn.Close()
+	}(conn)
 
 	ch, err := conn.Channel()
 	mq.FailOnError(err)
-	defer ch.Close()
+	defer func(ch *amqp.Channel) {
+		_ = ch.Close()
+	}(ch)
 
-	q, err := mq.Queue(ch, os.Getenv("MQ_NAME"))
+	queue, err := mq.Queue(ch, os.Getenv("MQ_NAME"))
 
 	mq.FailOnError(err)
 
-	messages, err := ch.Consume(
-		q.Name, // queue
-		"",     // consumer
-		true,   // auto-ack
-		false,  // exclusive
-		false,  // no-local
-		false,  // no-wait
-		nil,    // args
-	)
+	messages, err := ch.Consume(queue.Name, "", true, false, false, false, nil)
 
 	mq.FailOnError(err)
 
@@ -40,5 +37,6 @@ func main() {
 	}()
 
 	log.Printf(" [*] Waiting for messages. To exit press CTRL+C")
+
 	<-forever
 }
